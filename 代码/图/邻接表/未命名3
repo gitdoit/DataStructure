@@ -1,0 +1,90 @@
+ enum GraphKind {DG,DN,UDG,UDN};//有向图，有向网，无向图，无向网 
+ typedef char* InfoType;
+ struct ElemType//表节点中数据类型 
+ {
+ 	int adjvex;
+ 	InfoType *info;
+ };
+ 
+ struct ArcNode//表节点 
+ {
+ 	ElemType data;
+ 	ArcNode *nextarc;
+ };
+ 
+ struct VertexType{//顶点的数据结构 
+	char name[20];
+};
+
+ typedef struct//头结点 
+ {
+ 	VertexType data;//顶点的数据类型，这里只包含顶点的名字 
+ 	ArcNode *firstarc;//头结点所指的第一个表节点 
+ }VNode,AdjList[20];
+ 
+ struct ALGraph
+ {
+ 	AdjList vertices;//头结点数组
+	int vexnum,arcnum;//图中顶点和弧的个数 
+	GraphKind kind;//图的种类 
+ }
+ 
+ #define LNode ArcNode
+ #define next nextarc
+ typedef ArcNode *LinkList; 
+ 
+ int LocateVex(ALGraph G,VertexType u)//查找顶点在顶点列表中的位置 
+ {
+ 	int i;
+ 	for(i = 0 ; i < G.vexnum; i++)
+	{
+		if(strcmp(u.name,G.vertices[i].data.name) == 0)
+		return i;
+	}
+	return -1;
+ }
+ 
+ void VreateGraph(ALGraph &G)
+ {
+ 	int i ,j,k;
+	VertexType v1,v2;
+	ElemType e; 
+	char s[3] = "边";
+	printf("请输入图的类型 0 1 2 3 即 有向图 有向网 无向图 无向网\n");
+	scanf("%d",&G.kind)	;
+	if(G.kind < 2)
+		strcpy(s,"弧");
+	printf("请输入顶点数，边数\n");
+	scanf("%d%d",&G.vexnum,&G.arcnum);
+	printf("请输入%d个顶点的名称",G.vexnum);
+	for(i = 0 ; i < G.vexnum; i++)
+	{
+		scanf("%s",&G.vertices[i].data.name);
+		G.vertices[i].firstarc == NULL;
+	}
+	
+	printf("请输入%d条%s的",G.arcnum,s);
+	switch(G.kind)
+	{
+		case DG:printf("弧尾 弧头：\n");
+		break;
+		case DN:printf("弧尾 弧头 弧的信息：\n");
+		break;
+		case UDG:printf("顶点1 顶点2：\n");
+		break;
+		case UDN:printf("顶点1 顶点2 边的信息：\n");
+		break;
+	}
+	for(k = 0; i < G.arcnum ; k++)
+	{
+		scanf("%s%s",&v1.name,&v2.name);
+		i = LocateVex(G,v1);
+		j = LocateVex(G,v2);
+		e.info = NULL;
+		if(G.kind%2)
+		{
+			e.info = 
+		}
+	}
+		 
+ } 
