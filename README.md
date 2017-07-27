@@ -1,2 +1,2 @@
-# datastructure
-my work
+# 数据结构-c语言版
+大学课程相关代码
